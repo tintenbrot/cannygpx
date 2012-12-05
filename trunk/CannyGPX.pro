@@ -1,5 +1,5 @@
 # Add more folders to ship with the application, here
-folder_01.source = qml/cannygpx
+folder_01.source = qml
 folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
@@ -42,3 +42,9 @@ include(qmlapplicationviewer/qmlapplicationviewer.pri)
 HEADERS += \
     src/gpxmodel.h \
     src/gpxviewer.h
+
+QT += declarative opengl script xmlpatterns sql network svg
+
+OTHER_FILES += bar-descriptor.xml
+
+RESOURCES += CannyGPX.qrc
