@@ -24,7 +24,7 @@ Rectangle {
             property real detailsOpacity : 0
 
             width: listView.width
-            height: 70
+            height: width / 7
 
             // A simple rounded rectangle for the background
             Rectangle {
@@ -53,7 +53,7 @@ Rectangle {
 
                 Image {
                     id: recipeImage
-                    width: 50; height: 50
+                    width: recipe.height*.9; height: width
                     smooth: true;
                     //source: picture
                     source: iType
@@ -136,7 +136,7 @@ Rectangle {
                 name: "Details"
 
                 PropertyChanges { target: background; color: "lightblue" }
-                PropertyChanges { target: recipeImage; width: 80; height: 80; smooth: true } // Make picture bigger
+                PropertyChanges { target: recipeImage; width: listView.width*.3; height: width; smooth: true } // Make picture bigger
                 PropertyChanges { target: recipe; detailsOpacity: 1; x: 0 } // Make details visible
                 PropertyChanges { target: recipe; height: listView.height } // Fill the entire list area with the detailed view
 

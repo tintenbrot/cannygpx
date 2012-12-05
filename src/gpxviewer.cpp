@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QtSql/QSqlError>
 #include <QModelIndex>
+#include <QDir>
 
 GpxViewer::GpxViewer(QObject *parent) :
     QObject(parent)
@@ -14,13 +15,17 @@ GpxViewer::GpxViewer(QObject *parent) :
 
     m_Database = QSqlDatabase::addDatabase("QSQLITE");
     //bdb.setDatabaseName("Chinook_Sqlite.sqlite");
-    m_Database.setDatabaseName("CannyGPX.sqlite");
+    qDebug() << "currentPAth=" << QDir::currentPath();
+    qDebug() << "homePath="<< QDir::homePath();
+    QString sDatabaseFile=QDir::homePath() + QDir::separator()+"CannyGPX.sqlite";
+    //m_Database.setDatabaseName("CannyGPX.sqlite");
+    m_Database.setDatabaseName(sDatabaseFile);
     //bdb.setDatabaseName("/home/daniel/maps/default.sqlitedb");
     m_Database.open();
     qDebug() << "m_Database open=" << m_Database.lastError();
 
     //createDB();
-    fillDB();
+    //fillDB();
     m_pGpxModel->setQuery("SELECT * FROM Geocaches", m_Database);
     //m_pGpxModel->setQuery("SELECT * FROM artist", bdb);
 
@@ -64,9 +69,9 @@ void GpxViewer::fillDB()
 {
     qDebug() << "Fill database";
     m_pGpxModel->setQuery("INSERT INTO geocaches \
-                          VALUES ('GC123E', \
+                          VALUES ('GC123A', \
                                   'Als und als an der Wand lang', \
-                                  2, \
+                                  0, \
                                   'Verdammt schwer zu finden', \
                                   '<HTML> Hier steht ein irre langer Text als Beschreibung </HTML>');", m_Database);
 }

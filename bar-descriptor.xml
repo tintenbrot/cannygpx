@@ -16,4 +16,5 @@
     <action system="true">run_native</action>
     <asset path="CannyGPX" type="Qnx/Elf" entry="true">CannyGPX</asset>
     <asset path="%SRC_DIR%/qml">qml</asset>
+    <asset path="CannyGPX.sqlite">CannyGPX.sqlite</asset>
 </qnx>
