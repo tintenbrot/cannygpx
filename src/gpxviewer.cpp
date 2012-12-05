@@ -64,9 +64,9 @@ void GpxViewer::fillDB()
 {
     qDebug() << "Fill database";
     m_pGpxModel->setQuery("INSERT INTO geocaches \
-                          VALUES ('GC1238', \
+                          VALUES ('GC123E', \
                                   'Als und als an der Wand lang', \
-                                  0, \
+                                  2, \
                                   'Verdammt schwer zu finden', \
                                   '<HTML> Hier steht ein irre langer Text als Beschreibung </HTML>');", m_Database);
 }
