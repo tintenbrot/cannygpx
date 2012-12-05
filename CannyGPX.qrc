@@ -1,5 +1,16 @@
 <RCC>
     <qresource prefix="/">
-        <file>qml/main.qml</file>
+        <file>qml/cannygpx.qml</file>
+        <file>qml/content/TextButton.qml</file>
+        <file>qml/Icons/multi.svg</file>
+        <file>qml/Icons/mystery.svg</file>
+        <file>qml/Icons/traditional.svg</file>
+        <file>qml/content/pics/arrow-down.png</file>
+        <file>qml/content/pics/arrow-up.png</file>
+        <file>qml/content/pics/list-delete.png</file>
+        <file>qml/content/pics/minus-sign.png</file>
+        <file>qml/content/pics/moreDown.png</file>
+        <file>qml/content/pics/moreUp.png</file>
+        <file>qml/content/pics/plus-sign.png</file>
     </qresource>
 </RCC>
