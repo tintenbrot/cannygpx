@@ -20,7 +20,7 @@ GpxViewer::GpxViewer(QObject *parent) :
     qDebug() << "m_Database open=" << m_Database.lastError();
 
     //createDB();
-    //fillDB();
+    fillDB();
     m_pGpxModel->setQuery("SELECT * FROM Geocaches", m_Database);
     //m_pGpxModel->setQuery("SELECT * FROM artist", bdb);
 
@@ -37,7 +37,7 @@ GpxViewer::GpxViewer(QObject *parent) :
     //viewer.setMainQmlFile(QLatin1String("qml/test03/dynamiclist.qml"));
     m_viewer->rootContext()->setContextProperty("GpxModel",m_pGpxModel);
 
-    m_viewer->setMainQmlFile(QLatin1String("qml/cannygpx/cannygpx.qml"));
+    m_viewer->setMainQmlFile(QLatin1String("qrc:/qml/cannygpx.qml"));
     m_viewer->showExpanded();
 }
 

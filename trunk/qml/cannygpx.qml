@@ -6,7 +6,7 @@ import "content"
 Rectangle {
     id: page
     width: 400; height: 240
-    color: "black"
+    color: "blue"
 
     // Delegate for the recipes.  This delegate has two modes:
     // 1. List mode (default), which just shows the picture and title of the recipe.
