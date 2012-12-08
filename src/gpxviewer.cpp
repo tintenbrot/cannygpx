@@ -15,7 +15,7 @@ GpxViewer::GpxViewer(QObject *parent) :
 
     m_Database = QSqlDatabase::addDatabase("QSQLITE");
     //bdb.setDatabaseName("Chinook_Sqlite.sqlite");
-    qDebug() << "currentPAth=" << QDir::currentPath();
+    qDebug() << "currentPath=" << QDir::currentPath();
     qDebug() << "homePath="<< QDir::homePath();
     QString sDatabaseFile=QDir::homePath() + QDir::separator()+"CannyGPX.sqlite";
     //m_Database.setDatabaseName("CannyGPX.sqlite");
@@ -42,7 +42,8 @@ GpxViewer::GpxViewer(QObject *parent) :
     //viewer.setMainQmlFile(QLatin1String("qml/test03/dynamiclist.qml"));
     m_viewer->rootContext()->setContextProperty("GpxModel",m_pGpxModel);
 
-    m_viewer->setMainQmlFile(QLatin1String("qrc:/qml/cannygpx.qml"));
+    //m_viewer->setMainQmlFile(QLatin1String("qrc:/qml/CannyGPX.qml"));
+    m_viewer->setMainQmlFile(QLatin1String("qrc:/qml/MainWindow.qml"));
     m_viewer->showExpanded();
 }
 
@@ -69,9 +70,9 @@ void GpxViewer::fillDB()
 {
     qDebug() << "Fill database";
     m_pGpxModel->setQuery("INSERT INTO geocaches \
-                          VALUES ('GC123A', \
+                          VALUES ('GC1201', \
                                   'Als und als an der Wand lang', \
-                                  0, \
+                                 0, \
                                   'Verdammt schwer zu finden', \
                                   '<HTML> Hier steht ein irre langer Text als Beschreibung </HTML>');", m_Database);
 }

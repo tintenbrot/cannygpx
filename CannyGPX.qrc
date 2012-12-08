@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>qml/cannygpx.qml</file>
         <file>qml/content/TextButton.qml</file>
         <file>qml/Icons/multi.svg</file>
         <file>qml/Icons/mystery.svg</file>
@@ -12,5 +11,7 @@
         <file>qml/content/pics/moreDown.png</file>
         <file>qml/content/pics/moreUp.png</file>
         <file>qml/content/pics/plus-sign.png</file>
+        <file>qml/MainWindow.qml</file>
+        <file>qml/CannyGPX.qml</file>
     </qresource>
 </RCC>

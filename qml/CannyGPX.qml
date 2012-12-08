@@ -1,12 +1,13 @@
-import QtQuick 1.0
+import QtQuick 1.1
 import "content"
 
 // This example illustrates expanding a list item to show a more detailed view.
 
 Rectangle {
-    id: page
-    width: 400; height: 240
-    color: "blue"
+    id: gpxview
+    //width: 400; height: 240
+    width: 400; height: 400
+    color: "black"
 
     // Delegate for the recipes.  This delegate has two modes:
     // 1. List mode (default), which just shows the picture and title of the recipe.
