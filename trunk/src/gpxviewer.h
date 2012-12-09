@@ -21,9 +21,13 @@ private:
     QSqlDatabase m_Database;
     QmlApplicationViewer *m_viewer;
     GpxModel *m_pGpxModel;
+    QString m_sDatabaseFile;
 
+    QObject *m_RebuildButton;
     void createDB();
     void fillDB();
+private slots:
+    void slotEvalQMLSignal(int);
 };
 
 #endif // GPXVIEWER_H

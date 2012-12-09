@@ -17,9 +17,9 @@ GpxViewer::GpxViewer(QObject *parent) :
     //bdb.setDatabaseName("Chinook_Sqlite.sqlite");
     qDebug() << "currentPath=" << QDir::currentPath();
     qDebug() << "homePath="<< QDir::homePath();
-    QString sDatabaseFile=QDir::homePath() + QDir::separator()+"CannyGPX.sqlite";
+    m_sDatabaseFile=QDir::homePath() + QDir::separator()+"CannyGPX.sqlite";
     //m_Database.setDatabaseName("CannyGPX.sqlite");
-    m_Database.setDatabaseName(sDatabaseFile);
+    m_Database.setDatabaseName(m_sDatabaseFile);
     //bdb.setDatabaseName("/home/daniel/maps/default.sqlitedb");
     m_Database.open();
     qDebug() << "m_Database open=" << m_Database.lastError();
@@ -45,6 +45,11 @@ GpxViewer::GpxViewer(QObject *parent) :
     //m_viewer->setMainQmlFile(QLatin1String("qrc:/qml/CannyGPX.qml"));
     m_viewer->setMainQmlFile(QLatin1String("qrc:/qml/MainWindow.qml"));
     m_viewer->showExpanded();
+    //
+    // Button Rebuild Database in C++ verknüpfeln
+    //m_RebuildButton = m_viewer->findChild<QObject*>("btnRebuildDatabase");
+    m_RebuildButton = (QObject *)m_viewer->rootObject();
+    QObject::connect(m_RebuildButton, SIGNAL(qmlSignal(int)), this, SLOT(slotRebuildDatabase(int)));
 }
 
 GpxViewer::~GpxViewer()
@@ -75,4 +80,19 @@ void GpxViewer::fillDB()
                                  0, \
                                   'Verdammt schwer zu finden', \
                                   '<HTML> Hier steht ein irre langer Text als Beschreibung </HTML>');", m_Database);
+}
+
+void GpxViewer::slotEvalQMLSignal(int iValue)
+{
+    qDebug() << "Got Signal with value=" << iValue;
+    m_Database.close();
+    //
+    QFile MyFile(m_sDatabaseFile);
+    MyFile.remove();
+    //
+    m_Database.open();
+    createDB();
+    fillDB();
+
+
 }
