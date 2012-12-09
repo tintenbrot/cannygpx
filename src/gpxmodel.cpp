@@ -6,17 +6,6 @@
 GpxModel::GpxModel(QObject *parent) :
     QSqlQueryModel(parent)
 {
-//    QHash<int, QByteArray> roles;
-//    roles[DisplayRole] = "title";   // Role für die Bildunterschrift
-//    roles[DecorationRole] = "decoration"; // Role für die Anfrage nach einem Pixmap, das aus der ThumbnailRole (String) erzeugt wird
-    //roles[ThumbnailRole] = "thumbnail";  // Role für die Erzeugung des Bildnamens im QML-File (Eigentlich nur Zeilennummer mit header)
-//    roles[ThumbnailRole] = "picture";  // Role für die Erzeugung des Bildnamens im QML-File (Eigentlich nur Zeilennummer mit header)
-//    roles[DetailsRole]="detailedDescription";
-//    roles[SummaryRole]="summaryDescription";
-
-    //    roles[ExamNumberRole] = "examNumber"; //Role für die Untersuchungsnummer
-//    roles[ExamEyeRole] = "eye"; //Role für die Untersuchungsnummer
-//    setRoleNames(roles);
     m_uiTypeIndex=0;
 }
 

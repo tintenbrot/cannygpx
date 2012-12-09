@@ -6,6 +6,8 @@ Rectangle {
     id: mainwindow
     width: 400
     height: 600
+    signal qmlSignal(int iValue)
+
     Column {
         CannyGPX {
             width: 400
@@ -15,9 +17,11 @@ Rectangle {
             id: simpleButton
             width: 400
             height: 50
+
+
             Text{
                 id: buttonLabel
-                text: "Options"
+                text: "Rebuild Database"
                anchors.centerIn: parent;
                //anchors.verticalCenterOffset: -1
               }
@@ -26,7 +30,11 @@ Rectangle {
 
                 anchors.fill: parent //anchor all sides of the mouse area to the rectangle's anchors
                 //onClicked handles valid mouse button clicks
-                onClicked: console.log(buttonLabel.text + " clicked" )
+
+                onClicked: {
+                    mainwindow.qmlSignal(0)
+                    //console.log(buttonLabel.text + " clicked" )
+                }
               }
         }
     }
