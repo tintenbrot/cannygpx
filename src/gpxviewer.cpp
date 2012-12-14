@@ -5,9 +5,9 @@
 #include <QtSql/QSqlError>
 #include <QModelIndex>
 #include <QDir>
-#include "gpx/cachelist.h"
-#include "gpx/gpxfileparser.h"
-#include "gpx/gpxparser.h"
+//#include "gpx/cachelist.h"
+//#include "gpx/gpxfileparser.h"
+//#include "gpx/gpxparser.h"
 
 GpxViewer::GpxViewer(QObject *parent) :
     QObject(parent)
@@ -76,9 +76,9 @@ void GpxViewer::createDB()
 
 void GpxViewer::fillDB()
 {
-    CacheList MyCacheList;
-    GpxFileParser MyFileParser;
-    MyFileParser.parse("/home/daniel/default.gpx");
+    //CacheList MyCacheList;
+    //GpxFileParser MyFileParser;
+    //MyFileParser.parse("/home/daniel/default.gpx");
 
 
 //    qDebug() << "Fill database";
