@@ -5,9 +5,8 @@
 #include <QtSql/QSqlError>
 #include <QModelIndex>
 #include <QDir>
-//#include "gpx/cachelist.h"
-//#include "gpx/gpxfileparser.h"
-//#include "gpx/gpxparser.h"
+#include "gpx/gpxparser.h"
+
 
 GpxViewer::GpxViewer(QObject *parent) :
     QObject(parent)
@@ -52,7 +51,7 @@ GpxViewer::GpxViewer(QObject *parent) :
     // Button Rebuild Database in C++ verknüpfeln
     //m_RebuildButton = m_viewer->findChild<QObject*>("btnRebuildDatabase");
     m_RebuildButton = (QObject *)m_viewer->rootObject();
-    QObject::connect(m_RebuildButton, SIGNAL(qmlSignal(int)), this, SLOT(slotRebuildDatabase(int)));
+    QObject::connect(m_RebuildButton, SIGNAL(qmlSignal(int)), this, SLOT(slotEvalQMLSignal(int)));
 }
 
 GpxViewer::~GpxViewer()
@@ -79,8 +78,11 @@ void GpxViewer::fillDB()
     //CacheList MyCacheList;
     //GpxFileParser MyFileParser;
     //MyFileParser.parse("/home/daniel/default.gpx");
-
-
+    GPXparser MyGPXparser;
+    MyGPXparser.setFileName("/home/daniel/default.gpx");
+    Geocache OneCache;
+    //OneCache=MyGPXparser.getNextCache();
+    MyGPXparser.getNextCache();
 //    qDebug() << "Fill database";
 //    m_pGpxModel->setQuery("INSERT INTO geocaches \
 //                          VALUES ('GC1201', \
