@@ -33,17 +33,7 @@ symbian:TARGET.CAPABILITY += NetworkServices
 SOURCES += main.cpp \
     src/gpxmodel.cpp \
     src/gpxviewer.cpp \
-    src/gpx/gpxfileparser.cpp \
-    src/gpx/cachelist.cpp \
-    src/gpx/quazip-0.3/quazip/zip.c \
-    src/gpx/quazip-0.3/quazip/unzip.c \
-    src/gpx/quazip-0.3/quazip/quazipnewinfo.cpp \
-    src/gpx/quazip-0.3/quazip/quazipfile.cpp \
-    src/gpx/quazip-0.3/quazip/quazip.cpp \
-    src/gpx/quazip-0.3/quazip/quacrc32.cpp \
-    src/gpx/quazip-0.3/quazip/quaadler32.cpp \
-    src/gpx/quazip-0.3/quazip/JlCompress.cpp \
-    src/gpx/quazip-0.3/quazip/ioapi.c \
+    src/gpx/gpxparser.cpp \
     src/gpx/cache.cpp
 
 # Please do not modify the following two lines. Required for deployment.
@@ -55,25 +45,10 @@ HEADERS += \
     src/gpxmodel.h \
     src/gpxviewer.h \
     src/gpx/gpxparser.h \
-    src/gpx/gpxfileparser.h \
-    src/gpx/cachelist.h \
-    src/gpx/quazip-0.3/quazip/zip.h \
-    src/gpx/quazip-0.3/quazip/unzip.h \
-    src/gpx/quazip-0.3/quazip/quazipnewinfo.h \
-    src/gpx/quazip-0.3/quazip/quazipfileinfo.h \
-    src/gpx/quazip-0.3/quazip/quazipfile.h \
-    src/gpx/quazip-0.3/quazip/quazip.h \
-    src/gpx/quazip-0.3/quazip/quacrc32.h \
-    src/gpx/quazip-0.3/quazip/quachecksum32.h \
-    src/gpx/quazip-0.3/quazip/quaadler32.h \
-    src/gpx/quazip-0.3/quazip/JlCompress.h \
-    src/gpx/quazip-0.3/quazip/ioapi.h \
-    src/gpx/quazip-0.3/quazip/crypt.h \
     src/gpx/cache.h
 
 QT += declarative opengl script xmlpatterns sql network svg
 
-OTHER_FILES += bar-descriptor.xml \
-    src/gpx/quazip-0.3/quazip/quazip.pro
+OTHER_FILES += bar-descriptor.xml
 
 RESOURCES += CannyGPX.qrc
