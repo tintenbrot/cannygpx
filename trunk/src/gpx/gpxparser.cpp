@@ -60,22 +60,51 @@ bool GPXparser::getNextCache(Geocache &OneCache)
         // Elemente ermitteln
         if(m_XmlStreamReader->tokenType() == QXmlStreamReader::StartElement)
         {
-            qDebug() << "StartElement Name=" << m_XmlStreamReader->name();
+            //qDebug() << "StartElement Name=" << m_XmlStreamReader->name();
             if(m_XmlStreamReader->name() == "name")
             {
                 QString name;
-                //parseString(m_XmlStreamReader, name);
                 name=m_XmlStreamReader->readElementText();
-                OneCache.setDescription(name);
+                OneCache.setName(name);
                 qDebug() << iCount << ": " << name;
                 iCount++;
+            }
+            else if(m_XmlStreamReader->name() == "desc")
+            {
+                OneCache.setDescription(m_XmlStreamReader->readElementText());
+            }
+            else if(m_XmlStreamReader->name() == "type")
+            {
+                QString sType=m_XmlStreamReader->readElementText();
+                if (sType=="Geocache|Traditional Cache") OneCache.setType("tradi");
+                else if (sType=="Geocache|Multi-cache") OneCache.setType("multi");
+                else if (sType=="Geocache|Unknown Cache")  OneCache.setType("unknown");
+                qDebug() << "Found type=" << m_XmlStreamReader->readElementText();
+            }
+            else if(m_XmlStreamReader->name()=="text")
+            {
+                OneCache.setText(m_XmlStreamReader->readElementText());
+                qDebug() << "Text=" << m_XmlStreamReader->readElementText();
+            }
+            else if(m_XmlStreamReader->name()=="long_description")
+            {
+                OneCache.setLongDescription(m_XmlStreamReader->readElementText());
+                //qDebug() << "long_description=" << m_XmlStreamReader->readElementText();
+            }
+            else
+            {
+                qDebug() << "StartElement Name=" << m_XmlStreamReader->name();
+                //qDebug() << "Value=" << m_XmlStreamReader->readElementText();
             }
         }
 
         if(m_XmlStreamReader->tokenType() == QXmlStreamReader::EndElement)
         {
-            qDebug() << "EndElement Name=" << m_XmlStreamReader->name();
-            if (m_XmlStreamReader->name()=="wpt") boolFoundStartTag=false;
+            //qDebug() << "EndElement Name=" << m_XmlStreamReader->name();
+            if (m_XmlStreamReader->name()=="wpt") {
+                qDebug() << "Cache fettich gelesen";
+                boolFoundStartTag=false;
+            }
         }
     }
 

@@ -67,7 +67,7 @@ void GpxViewer::createDB()
     m_pGpxModel->setQuery("create table geocaches \
                           (sID varchar(7), \
                            sName varchar(32), \
-                           iType number(3), \
+                           sType varchar(16), \
                            sShortDescription varchar(30), \
                            sLongDescription varchar(1024) );", m_Database);
     qDebug() << "lastError=" << m_pGpxModel->lastError();
@@ -78,20 +78,21 @@ void GpxViewer::fillDB()
     QString sInsert;
     GPXparser MyGpxParser;
     Geocache MyCache;
-    MyGpxParser.setFileName("/home/daniel/Test_LDK.gpx");
-    //MyGpxParser.setFileName("/home/daniel/sample.xml");
+    //MyGpxParser.setFileName("/home/daniel/Test_LDK.gpx");
+    MyGpxParser.setFileName("/home/daniel/20121201_LDK.gpx");
     //MyGpxParser.setFile(MyFile);
     while (MyGpxParser.getNextCache(MyCache)) {
         qDebug() << "New found Cache";
         qDebug() << "Name=" << MyCache.name();
         qDebug() << "Description=" << MyCache.description() << "\n";
         //
-//        sInsert="INSERT INTO geocaches VALUES ('";
-//        sInsert += MyCache.name() + "', '"+MyCache.description()+"', ";
-//        sInsert += QString("%1").arg(0)+", ";
-//        sInsert += QString("'")+"Kommt noch"+"', ";
-//        sInsert += QString("'")+"HTML beschreibung kommt auch noch"+"');";
-//        m_pGpxModel->setQuery(sInsert, m_Database);
+        sInsert="INSERT INTO geocaches VALUES ('";
+        sInsert += MyCache.name() + "', '"+MyCache.description()+"', ";
+        //sInsert += QString("%1").arg((int)MyCache.type())+", ";
+        sInsert += QString("'")+MyCache.type()+"', ";
+        sInsert += QString("'")+"Kommt noch"+"', ";
+        sInsert += QString("'")+MyCache.longdescription()+"');";
+        m_pGpxModel->setQuery(sInsert, m_Database);
     }
     //CacheList MyCacheList;
     //GpxFileParser MyFileParser;
