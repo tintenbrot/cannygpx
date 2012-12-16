@@ -75,14 +75,33 @@ void GpxViewer::createDB()
 
 void GpxViewer::fillDB()
 {
+    QString sInsert;
+    GPXparser MyGpxParser;
+    Geocache MyCache;
+    MyGpxParser.setFileName("/home/daniel/Test_LDK.gpx");
+    //MyGpxParser.setFileName("/home/daniel/sample.xml");
+    //MyGpxParser.setFile(MyFile);
+    while (MyGpxParser.getNextCache(MyCache)) {
+        qDebug() << "New found Cache";
+        qDebug() << "Name=" << MyCache.name();
+        qDebug() << "Description=" << MyCache.description() << "\n";
+        //
+//        sInsert="INSERT INTO geocaches VALUES ('";
+//        sInsert += MyCache.name() + "', '"+MyCache.description()+"', ";
+//        sInsert += QString("%1").arg(0)+", ";
+//        sInsert += QString("'")+"Kommt noch"+"', ";
+//        sInsert += QString("'")+"HTML beschreibung kommt auch noch"+"');";
+//        m_pGpxModel->setQuery(sInsert, m_Database);
+    }
     //CacheList MyCacheList;
     //GpxFileParser MyFileParser;
     //MyFileParser.parse("/home/daniel/default.gpx");
-    GPXparser MyGPXparser;
-    MyGPXparser.setFileName("/home/daniel/default.gpx");
-    Geocache OneCache;
+    //GpxParser MyGPXparser;
+    //MyGPXparser.
+    //MyGPXparser.setFileName("/home/daniel/default.gpx");
+    //GeoCache OneCache;
     //OneCache=MyGPXparser.getNextCache();
-    MyGPXparser.getNextCache();
+    //MyGPXparser.getNextCache();
 //    qDebug() << "Fill database";
 //    m_pGpxModel->setQuery("INSERT INTO geocaches \
 //                          VALUES ('GC1201', \
