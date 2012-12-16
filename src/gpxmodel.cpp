@@ -30,7 +30,7 @@ void GpxModel::generateRoleNames()
     QHash<int, QByteArray> roleNames;
     for( int i = 0; i < record().count(); i++) {
         roleNames[Qt::UserRole + i + 1] = record().fieldName(i).toAscii();
-        if (roleNames[Qt::UserRole+i+1] == "iType") {
+        if (roleNames[Qt::UserRole+i+1] == "sType") {
             m_uiTypeIndex=i;
             qDebug() << "Found=" << i;
         }
@@ -53,21 +53,29 @@ QVariant GpxModel::data(const QModelIndex &index, int role) const
         retVariant = QSqlQueryModel::data(modelIndex, Qt::DisplayRole);
         if (columnIdx == m_uiTypeIndex)
         {
-            switch(retVariant.toInt())
-            {
-            case 0:
-                retVariant = QString("Icons/traditional.svg");
-                break;
-            case 1:
-                retVariant = QString("Icons/multi.svg");
-                break;
-            case 2:
-                retVariant = QString("Icons/mystery.svg");
-                break;
-            }
+            qDebug() << "Got Type Request: " << retVariant.toString();
 
-            qDebug() << "Wurst=" << retVariant.toInt();
+            if (retVariant.toString()=="tradi") retVariant = QString("Icons/traditional.svg");
+            else if (retVariant.toString()=="multi") retVariant = QString("Icons/multi.svg");
+            else if (retVariant.toString()=="unknown") retVariant = QString("Icons/mystery.svg");
         }
+//        if (columnIdx == m_uiTypeIndex)
+//        {
+//            switch(retVariant.toInt())
+//            {
+//            case 0:
+//                retVariant = QString("Icons/traditional.svg");
+//                break;
+//            case 1:
+//                retVariant = QString("Icons/multi.svg");
+//                break;
+//            case 2:
+//                retVariant = QString("Icons/mystery.svg");
+//                break;
+//            }
+
+//            qDebug() << "Wurst=" << retVariant.toInt();
+//        }
         qDebug() << "Data=" << retVariant;
     }
     return retVariant;

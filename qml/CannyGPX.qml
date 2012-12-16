@@ -57,7 +57,7 @@ Rectangle {
                     width: recipe.height*.9; height: width
                     smooth: true;
                     //source: picture
-                    source: iType
+                    source: sType
                 }
 
                 Column {
@@ -106,8 +106,8 @@ Rectangle {
                     contentHeight: methodText.height
                     clip: true
 
-                    //Text { id: methodText; text: detailedDescription; wrapMode: Text.WordWrap; width: details.width }
-                    Text { id: methodText; text: Name; wrapMode: Text.WordWrap; width: details.width }
+                    Text { id: methodText; text: sLongDescription; wrapMode: Text.WordWrap; width: details.width }
+                    //Text { id: methodText; text: Name; wrapMode: Text.WordWrap; width: details.width }
                 }
 
                 Image {

@@ -10,17 +10,17 @@ public:
     explicit Geocache(QObject *parent = 0);
     virtual ~Geocache();
 
-    enum CacheType {
-      Unknown, UnknownCache, MultiCache, TraditionalCache
-    };
-
     QString name();
     QString description();
-    CacheType type();
+    QString type();
+    QString text();
+    QString longdescription();
     //
     void setName(QString sValue);
     void setDescription(QString sValue);
-    void setType(CacheType value);
+    void setType(QString sValue);
+    void setText(QString sValue);
+    void setLongDescription(QString sValue);
 signals:
     
 public slots:
@@ -28,7 +28,9 @@ public slots:
 private:
     QString m_name;
     QString m_description;
-    CacheType m_type;
+    QString m_type;
+    QString m_text;
+    QString m_longdescription;
 };
 
 #endif // GEOCACHE_H

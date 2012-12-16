@@ -4,7 +4,7 @@ Geocache::Geocache(QObject *parent) :
     QObject(parent)
 {
     m_name="GC1234";
-    m_type=TraditionalCache;
+    m_type="tradi";
     m_description="Ein Wurstencache";
 }
 
@@ -24,9 +24,19 @@ QString Geocache::description()
     return m_description;
 }
 
-Geocache::CacheType Geocache::type()
+QString Geocache::type()
 {
     return m_type;
+}
+
+QString Geocache::text()
+{
+    return m_text;
+}
+
+QString Geocache::longdescription()
+{
+    return m_longdescription;
 }
 
 void Geocache::setName(QString sValue)
@@ -40,7 +50,17 @@ void Geocache::setDescription(QString sValue)
     m_description=sValue;
 }
 
-void Geocache::setType(Geocache::CacheType value)
+void Geocache::setType(QString sValue)
 {
-    m_type=value;
+    m_type=sValue;
+}
+
+void Geocache::setText(QString sValue)
+{
+    m_text=sValue;
+}
+
+void Geocache::setLongDescription(QString sValue)
+{
+    m_longdescription=sValue;
 }
