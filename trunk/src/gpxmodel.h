@@ -32,6 +32,7 @@ public slots:
 
 private:
     quint16 m_uiTypeIndex;
+    quint16 m_uiNameIndex;
 };
 
 #endif // GPXMODEL_H

@@ -25,7 +25,7 @@ Rectangle {
             property real detailsOpacity : 0
 
             width: listView.width
-            height: width / 7
+            height: width / 6
 
             // A simple rounded rectangle for the background
             Rectangle {
@@ -65,9 +65,13 @@ Rectangle {
                     spacing: 5
 
                     Text { 
-                        //text: title
-                        text: sID
+                        text: sCode
                         font.bold: true; font.pointSize: 16
+
+                    }
+                    Text {
+                        text: sName
+                        font.bold: false; font.pointSize: 12
                     }
 
                     Text {
