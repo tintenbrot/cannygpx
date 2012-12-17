@@ -34,7 +34,6 @@ void GPXparser::setFileName(QString sFileName)
 bool GPXparser::getNextCache(Geocache &OneCache)
 {
     bool boolValid=true;
-    int iCount=0;
 
     //OneCache.clear();
     // StartElement "wpt" suchen, dieses gibt einen neuen Cache an
@@ -53,6 +52,7 @@ bool GPXparser::getNextCache(Geocache &OneCache)
     }
     //
     // Prima, jetzt so lange einlesen, bis wpt-EndElement
+    bool boolGotName=false;
     while(!m_XmlStreamReader->atEnd() && !m_XmlStreamReader->hasError() && boolFoundStartTag)
     {
         m_XmlStreamReader->readNext();
@@ -61,17 +61,18 @@ bool GPXparser::getNextCache(Geocache &OneCache)
         if(m_XmlStreamReader->tokenType() == QXmlStreamReader::StartElement)
         {
             //qDebug() << "StartElement Name=" << m_XmlStreamReader->name();
+
             if(m_XmlStreamReader->name() == "name")
             {
-                QString name;
-                name=m_XmlStreamReader->readElementText();
-                OneCache.setName(name);
-                qDebug() << iCount << ": " << name;
-                iCount++;
+                if (!boolGotName) {
+                    boolGotName=true;
+                    OneCache.setCode(m_XmlStreamReader->readElementText());
+                }
             }
             else if(m_XmlStreamReader->name() == "desc")
             {
-                OneCache.setDescription(m_XmlStreamReader->readElementText());
+                //OneCache.setDescription(m_XmlStreamReader->readElementText());
+                OneCache.setName(m_XmlStreamReader->readElementText());
             }
             else if(m_XmlStreamReader->name() == "type")
             {
@@ -85,6 +86,11 @@ bool GPXparser::getNextCache(Geocache &OneCache)
             {
                 OneCache.setText(m_XmlStreamReader->readElementText());
                 qDebug() << "Text=" << m_XmlStreamReader->readElementText();
+            }
+            else if(m_XmlStreamReader->name()=="short_description")
+            {
+                OneCache.setDescription(m_XmlStreamReader->readElementText());
+                //qDebug() << "long_description=" << m_XmlStreamReader->readElementText();
             }
             else if(m_XmlStreamReader->name()=="long_description")
             {

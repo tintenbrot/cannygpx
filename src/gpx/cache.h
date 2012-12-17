@@ -9,13 +9,14 @@ class Geocache : public QObject
 public:
     explicit Geocache(QObject *parent = 0);
     virtual ~Geocache();
-
+    QString code();
     QString name();
     QString description();
     QString type();
     QString text();
     QString longdescription();
     //
+    void setCode(QString sValue);
     void setName(QString sValue);
     void setDescription(QString sValue);
     void setType(QString sValue);
@@ -26,10 +27,11 @@ signals:
 public slots:
 
 private:
+    QString m_code;
     QString m_name;
-    QString m_description;
     QString m_type;
     QString m_text;
+    QString m_description;
     QString m_longdescription;
 };
 
