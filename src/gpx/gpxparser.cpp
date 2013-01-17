@@ -27,7 +27,7 @@ void GPXparser::setFileName(QString sFileName)
     //m_file=QFile(sFileName,this);
     m_XmlStreamReader=new QXmlStreamReader(&m_file);
     qDebug() << "FileName=" << sFileName;
-    //qDebug() << "File exist=" << QFile(sFileName).exists();
+    qDebug() << "File exist=" << QFile(sFileName).exists();
 }
 
 

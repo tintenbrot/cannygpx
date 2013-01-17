@@ -21,5 +21,5 @@
     <!-- PROJECTPATH should point to the project binary, path can be relative -->
     <asset path="CannyGPX" type="Qnx/Elf" entry="true">CannyGPX</asset>
     <asset path="%SRC_DIR%/qml">qml</asset>
-  <!--  <asset path="CannyGPX.sqlite">CannyGPX.sqlite</asset> -->
+    <!-- <asset path="CannyGPX.sqlite">CannyGPX.sqlite</asset> -->
 </qnx>

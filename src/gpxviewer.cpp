@@ -120,21 +120,36 @@ void GpxViewer::fillDB(QString sFileName)
 void GpxViewer::slotEvalQMLSignal(int iValue)
 {
     qDebug() << "Got Signal with value=" << iValue;
-    FilePicker* filePicker = new FilePicker();
-//    filePicker->setType(FileType::Picture);
-    filePicker->setTitle("Select Picture");
-    filePicker->setMode(FilePickerMode::Picker);
-    filePicker->open();
-//    m_Database.close();
-//    // "/home/daniel/Test_LDK.gpx"
+    if (iValue==0) {
+        FilePicker* filePicker = new FilePicker();
+    //    filePicker->setType(FileType::Picture);
+        filePicker->setTitle("Select GPX-file");
+        filePicker->setMode(FilePickerMode::Picker);
+        filePicker->open();
+        QObject::connect(filePicker, SIGNAL(fileSelected(const QStringList&)), this, SLOT(onFileSelected(const QStringList&)));
+    }
+    //
+}
+
+void GpxViewer::onFileSelected(const QStringList &slList )
+{
+    QString sFile;
+    //sFile=QDir::homePath()+QDir::separator()+"downloads"+QDir::separator()+"default.gpx";
+    sFile=slList[0];
+    //QString sFile = filePicker->selectedFiles[0];
+    m_Database.close();
+//     "/home/daniel/Test_LDK.gpx"
 //    QString sFile= QFileDialog::getOpenFileName(this, "Open Image", QDir::homePath(), "Gpx Files (*.gpx)");
-//    qDebug() << sFile;
-//    if (QFile(sFile).exists()) {
-//        QFile MyFile(m_sDatabaseFile);
-//        MyFile.remove();
-//        //
-//        m_Database.open();
-//        createDB();
-//        fillDB(sFile);
-//    }
+    qDebug() << "Selected file=" << sFile;
+    qDebug() << "File exist=" << QFile(sFile).exists();
+    if (QFile(sFile).exists()) {
+    {
+        qDebug() << "Juchu, das File existiert";
+        QFile MyFile(m_sDatabaseFile);
+        MyFile.remove();
+        //
+        m_Database.open();
+        createDB();
+        fillDB(sFile);
+    }
 }
