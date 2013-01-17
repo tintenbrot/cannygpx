@@ -2,15 +2,16 @@
 #define GPXVIEWER_H
 
 #include <QObject>
+#include <QWidget>
 #include <QtGui/QApplication>
 #include "qmlapplicationviewer.h"
 #include "gpxmodel.h"
 
-class GpxViewer : public QObject
+class GpxViewer : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GpxViewer(QObject *parent = 0);
+    explicit GpxViewer(QWidget *parent = 0);
     virtual ~GpxViewer();
 
 signals:
@@ -25,7 +26,7 @@ private:
 
     QObject *m_RebuildButton;
     void createDB();
-    void fillDB();
+    void fillDB(QString sFileName);
 private slots:
     void slotEvalQMLSignal(int);
 };

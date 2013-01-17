@@ -5,11 +5,14 @@
 #include <QtSql/QSqlError>
 #include <QModelIndex>
 #include <QDir>
+//#include <QFileDialog>
 #include "gpx/gpxparser.h"
+#include <bb/cascades/pickers/FilePicker>
 
+using namespace bb::cascades::pickers;
 
-GpxViewer::GpxViewer(QObject *parent) :
-    QObject(parent)
+GpxViewer::GpxViewer(QWidget *parent) :
+    QWidget(parent)
 {
     m_pGpxModel=0;
     m_pGpxModel = new GpxModel(this);
@@ -45,7 +48,8 @@ GpxViewer::GpxViewer(QObject *parent) :
     m_viewer->rootContext()->setContextProperty("GpxModel",m_pGpxModel);
 
     //m_viewer->setMainQmlFile(QLatin1String("qrc:/qml/CannyGPX.qml"));
-    m_viewer->setMainQmlFile(QLatin1String("qrc:/qml/MainWindow.qml"));
+   // m_viewer->setMainQmlFile(QLatin1String("qrc:/qml/MainWindow.qml"));
+    m_viewer->setMainQmlFile(QLatin1String("qml/MainWindow.qml"));
     m_viewer->showExpanded();
     //
     // Button Rebuild Database in C++ verknüpfeln
@@ -73,12 +77,13 @@ void GpxViewer::createDB()
     qDebug() << "lastError=" << m_pGpxModel->lastError();
 }
 
-void GpxViewer::fillDB()
+void GpxViewer::fillDB(QString sFileName)
 {
     QString sInsert;
     GPXparser MyGpxParser;
     Geocache MyCache;
-    MyGpxParser.setFileName("/home/daniel/Test_LDK.gpx");
+    MyGpxParser.setFileName(sFileName);
+    //MyGpxParser.setFileName("/home/daniel/Test_LDK.gpx");
     //MyGpxParser.setFileName("/home/daniel/20121201_LDK.gpx");
     //MyGpxParser.setFile(MyFile);
     while (MyGpxParser.getNextCache(MyCache)) {
@@ -115,14 +120,21 @@ void GpxViewer::fillDB()
 void GpxViewer::slotEvalQMLSignal(int iValue)
 {
     qDebug() << "Got Signal with value=" << iValue;
-    m_Database.close();
-    //
-    QFile MyFile(m_sDatabaseFile);
-    MyFile.remove();
-    //
-    m_Database.open();
-    createDB();
-    fillDB();
-
-
+    FilePicker* filePicker = new FilePicker();
+//    filePicker->setType(FileType::Picture);
+    filePicker->setTitle("Select Picture");
+    filePicker->setMode(FilePickerMode::Picker);
+    filePicker->open();
+//    m_Database.close();
+//    // "/home/daniel/Test_LDK.gpx"
+//    QString sFile= QFileDialog::getOpenFileName(this, "Open Image", QDir::homePath(), "Gpx Files (*.gpx)");
+//    qDebug() << sFile;
+//    if (QFile(sFile).exists()) {
+//        QFile MyFile(m_sDatabaseFile);
+//        MyFile.remove();
+//        //
+//        m_Database.open();
+//        createDB();
+//        fillDB(sFile);
+//    }
 }
