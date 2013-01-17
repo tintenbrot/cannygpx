@@ -13,5 +13,6 @@
         <file>qml/content/pics/plus-sign.png</file>
         <file>qml/MainWindow.qml</file>
         <file>qml/CannyGPX.qml</file>
+        <file>qml/content/FileSelector.qml</file>
     </qresource>
 </RCC>

@@ -1,12 +1,14 @@
 import QtQuick 1.1
-import Qt 4.7
+//import Qt 4.7
 import "content"
 
 Rectangle {
     id: mainwindow
     width: 400
     height: 600
+    color: "blue"
     signal qmlSignal(int iValue)
+
 
     Column {
         CannyGPX {

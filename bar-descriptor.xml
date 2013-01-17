@@ -10,11 +10,16 @@
         <autoOrients>true</autoOrients>
         <aspectRatio>landscape</aspectRatio>
     </initialWindow>
+    <publisher>PUBLISHER</publisher>
+    <copyright>COPYRIGHT</copyright>
     <env value="app/native/imports" var="QML_IMPORT_PATH"/>
     <env value="app/native/plugins:/usr/lib/qt4/plugins" var="QT_PLUGIN_PATH"/>
     <env value="app/native/lib:/usr/lib/qt4/lib/" var="LD_LIBRARY_PATH"/>
+    <arg>-style</arg>
+    <arg>qnxlight</arg>
     <action system="true">run_native</action>
+    <!-- PROJECTPATH should point to the project binary, path can be relative -->
     <asset path="CannyGPX" type="Qnx/Elf" entry="true">CannyGPX</asset>
     <asset path="%SRC_DIR%/qml">qml</asset>
-    <asset path="CannyGPX.sqlite">CannyGPX.sqlite</asset>
+  <!--  <asset path="CannyGPX.sqlite">CannyGPX.sqlite</asset> -->
 </qnx>
