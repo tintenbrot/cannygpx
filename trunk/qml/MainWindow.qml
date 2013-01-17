@@ -4,7 +4,7 @@ import "content"
 
 Rectangle {
     id: mainwindow
-    width: 400
+    width: parent.width
     height: 600
     color: "blue"
     signal qmlSignal(int iValue)
@@ -12,18 +12,18 @@ Rectangle {
 
     Column {
         CannyGPX {
-            width: 400
-            height: mainwindow.height-50
+            width: mainwindow.width
+            height: mainwindow.height-100
         }
         Rectangle {
             id: simpleButton
-            width: 400
-            height: 50
+            width: mainwindow.width
+            height: 100
 
 
             Text{
                 id: buttonLabel
-                text: "Rebuild Database"
+                text: "Load GPX"
                anchors.centerIn: parent;
                //anchors.verticalCenterOffset: -1
               }

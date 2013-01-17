@@ -29,6 +29,7 @@ private:
     void fillDB(QString sFileName);
 private slots:
     void slotEvalQMLSignal(int);
+    void onFileSelected(const QStringList&);
 };
 
 #endif // GPXVIEWER_H
