@@ -22,4 +22,5 @@
     <asset path="CannyGPX" type="Qnx/Elf" entry="true">CannyGPX</asset>
     <asset path="%SRC_DIR%/qml">qml</asset>
     <!-- <asset path="CannyGPX.sqlite">CannyGPX.sqlite</asset> -->
+    <permission>access_shared</permission>
 </qnx>
