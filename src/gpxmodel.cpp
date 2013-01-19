@@ -55,12 +55,16 @@ QVariant GpxModel::data(const QModelIndex &index, int role) const
         int columnIdx = role - Qt::UserRole - 1;
         QModelIndex modelIndex = this->index(index.row(), columnIdx);
         retVariant = QSqlQueryModel::data(modelIndex, Qt::DisplayRole);
-        if (columnIdx==m_uiTypeIndex) {
+        if  (columnIdx==m_uiTypeIndex)
+        {
             qDebug() << "Got Type Request: " << retVariant.toString();
 
             if (retVariant.toString()=="tradi") retVariant = QString("Icons/traditional.svg");
             else if (retVariant.toString()=="multi") retVariant = QString("Icons/multi.svg");
             else if (retVariant.toString()=="unknown") retVariant = QString("Icons/mystery.svg");
+        }
+        else if (columnIdx>2) {
+                retVariant=QString("");
         }
 //        else if (columnIdx==m_uiNameIndex) {
 //            modelIndex = this->index(index.row(), Qt::UserRole+2);

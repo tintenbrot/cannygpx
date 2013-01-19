@@ -6,8 +6,10 @@
 #include <QtGui/QApplication>
 #include "qmlapplicationviewer.h"
 #include "gpxmodel.h"
-#include <bb/cascades/pickers/FilePicker>
 
+#ifdef Q_OS_BLACKBERRY
+#include <bb/cascades/pickers/FilePicker>
+#endif
 
 class GpxViewer : public QWidget
 {
@@ -25,8 +27,11 @@ private:
     QmlApplicationViewer *m_viewer;
     GpxModel *m_pGpxModel;
     QString m_sDatabaseFile;
+#ifdef Q_OS_BLACKBERRY
     bb::cascades::pickers::FilePicker* m_filePicker;
-
+#else
+    quint32 * m_filePicker;
+#endif
     QObject *m_RebuildButton;
     void createDB();
     void fillDB(QString sFileName);
