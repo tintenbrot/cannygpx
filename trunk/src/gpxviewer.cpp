@@ -11,7 +11,9 @@
 //#include <bb/cascades/pickers/FilePicker>
 
 
+#ifdef Q_OS_BLACKBERRY
 using namespace bb::cascades::pickers;
+#endif
 
 GpxViewer::GpxViewer(QWidget *parent) :
     QWidget(parent)
@@ -19,6 +21,8 @@ GpxViewer::GpxViewer(QWidget *parent) :
     m_pGpxModel=0;
     m_pGpxModel = new GpxModel(this);
     m_viewer= new QmlApplicationViewer();
+
+
     //m_filePicker = 0;
     m_Database = QSqlDatabase::addDatabase("QSQLITE");
     //bdb.setDatabaseName("Chinook_Sqlite.sqlite");
@@ -26,6 +30,9 @@ GpxViewer::GpxViewer(QWidget *parent) :
     qDebug() << "homePath="<< QDir::homePath();
     m_sDatabaseFile=QDir::homePath() + QDir::separator()+"CannyGPX.sqlite";
     //m_Database.setDatabaseName("CannyGPX.sqlite");
+//    QFile MyFile(m_sDatabaseFile);
+//    MyFile.remove();
+    //
     m_Database.setDatabaseName(m_sDatabaseFile);
     //bdb.setDatabaseName("/home/daniel/maps/default.sqlitedb");
     m_Database.open();
@@ -102,28 +109,13 @@ void GpxViewer::fillDB(QString sFileName)
         sInsert += QString("'")+MyCache.longdescription()+"');";
         m_pGpxModel->setQuery(sInsert, m_Database);
     }
-    //CacheList MyCacheList;
-    //GpxFileParser MyFileParser;
-    //MyFileParser.parse("/home/daniel/default.gpx");
-    //GpxParser MyGPXparser;
-    //MyGPXparser.
-    //MyGPXparser.setFileName("/home/daniel/default.gpx");
-    //GeoCache OneCache;
-    //OneCache=MyGPXparser.getNextCache();
-    //MyGPXparser.getNextCache();
-//    qDebug() << "Fill database";
-//    m_pGpxModel->setQuery("INSERT INTO geocaches \
-//                          VALUES ('GC1201', \
-//                                  'Als und als an der Wand lang', \
-//                                 0, \
-//                                  'Verdammt schwer zu finden', \
-//                                  '<HTML> Hier steht ein irre langer Text als Beschreibung </HTML>');", m_Database);
 }
 
 void GpxViewer::slotEvalQMLSignal(int iValue)
 {
     qDebug() << "Got Signal with value=" << iValue;
     if (iValue==0) {
+#ifdef Q_OS_BLACKBERRY
         //if (m_filePicker != 0) delete m_filePicker;
         QStringList filters;
         filters << "*.gpx";
@@ -137,7 +129,10 @@ void GpxViewer::slotEvalQMLSignal(int iValue)
         m_filePicker->setMode(FilePickerMode::Picker);
         m_filePicker->open();
         QObject::connect(m_filePicker, SIGNAL(fileSelected(const QStringList&)), this, SLOT(onFileSelected(const QStringList&)));
+#endif
     }
+    if (iValue==1)
+        qApp->quit();
     //
 }
 

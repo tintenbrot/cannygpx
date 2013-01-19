@@ -7,7 +7,7 @@ Rectangle {
     id: gpxview
     //width: 400; height: 240
     width: 400; height: 400
-    color: "black"
+    color: "blue"
 
     // Delegate for the recipes.  This delegate has two modes:
     // 1. List mode (default), which just shows the picture and title of the recipe.
@@ -30,10 +30,10 @@ Rectangle {
             // A simple rounded rectangle for the background
             Rectangle {
                 id: background
-                x: 2; y: 2; width: parent.width - x*2; height: parent.height - y*2
+                x: 4; y: 4; width: parent.width - x*2; height: parent.height - y*2
                 color: "ivory"
                 border.color: "white"
-                radius: 5
+                radius: 10
             }
 
             // This mouse region covers the entire delegate.
@@ -133,6 +133,7 @@ Rectangle {
                 anchors { right: background.right; rightMargin: 10 }
                 opacity: recipe.detailsOpacity
                 text: "Close"
+                color: "green"
 
                 onClicked: recipe.state = '';
             }

@@ -1,17 +1,26 @@
 <?xml version='1.0' encoding='utf-8' standalone='no'?>
 <qnx xmlns="http://www.qnx.com/schemas/application/1.0">
     <id>com.example.cannygpx</id>
-    <name>cannygpx</name>
+    <name>CannygGPX</name>
     <versionNumber>1.0.0</versionNumber>
-    <description>DESCRIPTION</description>
+    <description>
+        This small application can be used to view Geocaching waypoint files (gpx)
+        Thanks to Dimitri Brukakis who builds the icons.
+    </description>
+    <icon>
+        <image>tintenbrot.png</image>
+    </icon>
+    <splashscreen>
+        tintenbrot_splash.png
+    </splashscreen>
     <initialWindow>
         <systemChrome>none</systemChrome>
         <transparent>false</transparent>
         <autoOrients>true</autoOrients>
         <aspectRatio>landscape</aspectRatio>
     </initialWindow>
-    <publisher>PUBLISHER</publisher>
-    <copyright>COPYRIGHT</copyright>
+    <publisher>Daniel Ache</publisher>
+    <copyright>Daniel Ache</copyright>
     <env value="app/native/imports" var="QML_IMPORT_PATH"/>
     <env value="app/native/plugins:/usr/lib/qt4/plugins" var="QT_PLUGIN_PATH"/>
     <env value="app/native/lib:/usr/lib/qt4/lib/" var="LD_LIBRARY_PATH"/>
@@ -21,6 +30,8 @@
     <!-- PROJECTPATH should point to the project binary, path can be relative -->
     <asset path="CannyGPX" type="Qnx/Elf" entry="true">CannyGPX</asset>
     <asset path="%SRC_DIR%/qml">qml</asset>
+    <asset path="%SRC_DIR%/tintenbrot.png">tintenbrot.png</asset>
+    <asset path="%SRC_DIR%/tintenbrot_splash.png">tintenbrot_splash.png</asset>
     <!-- <asset path="CannyGPX.sqlite">CannyGPX.sqlite</asset> -->
     <permission>access_shared</permission>
 </qnx>
