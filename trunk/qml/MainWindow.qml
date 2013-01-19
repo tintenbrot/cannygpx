@@ -1,11 +1,10 @@
 import QtQuick 1.1
-//import Qt 4.7
-import "content"
 
 Rectangle {
     id: screen
-    width: parent.width
-    height: 600
+    //width: parent.width
+    width: 460
+    height: 800
     color: "blue"
     signal qmlSignal(int iValue)
 

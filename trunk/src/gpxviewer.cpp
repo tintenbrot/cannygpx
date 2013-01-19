@@ -129,6 +129,22 @@ void GpxViewer::slotEvalQMLSignal(int iValue)
         m_filePicker->setMode(FilePickerMode::Picker);
         m_filePicker->open();
         QObject::connect(m_filePicker, SIGNAL(fileSelected(const QStringList&)), this, SLOT(onFileSelected(const QStringList&)));
+#else
+        QString sFile=QDir::homePath() + QDir::separator()+"default.gpx";;
+        m_Database.close();
+        if (QFile(sFile).exists())
+        {
+            m_viewer->rootContext()->setContextProperty("GpxModel",0);
+            qDebug() << "Juchu, das File existiert";
+            QFile MyFile(m_sDatabaseFile);
+            MyFile.remove();
+            //
+            m_Database.open();
+            createDB();
+            fillDB(sFile);
+            //
+            m_viewer->rootContext()->setContextProperty("GpxModel",m_pGpxModel);
+        }
 #endif
     }
     if (iValue==1)
@@ -150,6 +166,7 @@ void GpxViewer::onFileSelected(const QStringList &slList )
     qDebug() << "File exist=" << QFile(sFile).exists();
     if (QFile(sFile).exists())
     {
+        //m_viewer->rootContext()->setContextProperty("GpxModel",0);
         qDebug() << "Juchu, das File existiert";
         QFile MyFile(m_sDatabaseFile);
         MyFile.remove();
@@ -157,5 +174,7 @@ void GpxViewer::onFileSelected(const QStringList &slList )
         m_Database.open();
         createDB();
         fillDB(sFile);
+        // Reset Database
+        //m_viewer->rootContext()->setContextProperty("GpxModel",m_pGpxModel);
     }
 }

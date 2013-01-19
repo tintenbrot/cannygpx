@@ -4,8 +4,9 @@
     <name>CannygGPX</name>
     <versionNumber>1.0.0</versionNumber>
     <description>
-        This small application can be used to view Geocaching waypoint files (gpx)
+        This small application can be used to view Geocaching waypoint files (gpx).
         Thanks to Dimitri Brukakis who builds the icons.
+        This is my first qml-project.
     </description>
     <icon>
         <image>tintenbrot.png</image>
@@ -29,7 +30,15 @@
     <action system="true">run_native</action>
     <!-- PROJECTPATH should point to the project binary, path can be relative -->
     <asset path="CannyGPX" type="Qnx/Elf" entry="true">CannyGPX</asset>
+<!--
     <asset path="%SRC_DIR%/qml">qml</asset>
+-->
+    <asset path="%SRC_DIR%/qml/MainWindow.qml">qml/MainWindow.qml</asset>
+    <asset path="%SRC_DIR%/qml/CannyGPX.qml">qml/CannyGPX.qml</asset>
+    <asset path="%SRC_DIR%/qml/CannyDetails.qml">qml/CannyDetails.qml</asset>
+    <asset path="%SRC_DIR%/qml/Icons/multi.svg">qml/Icons/multi.svg</asset>
+    <asset path="%SRC_DIR%/qml/Icons/traditional.svg">qml/Icons/traditional.svg</asset>
+    <asset path="%SRC_DIR%/qml/Icons/mystery.svg">qml/Icons/mystery.svg</asset>
     <asset path="%SRC_DIR%/tintenbrot.png">tintenbrot.png</asset>
     <asset path="%SRC_DIR%/tintenbrot_splash.png">tintenbrot_splash.png</asset>
     <!-- <asset path="CannyGPX.sqlite">CannyGPX.sqlite</asset> -->
