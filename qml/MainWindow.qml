@@ -9,7 +9,6 @@ Rectangle {
     color: "blue"
     signal qmlSignal(int iValue)
 
-
     states: [
         State {
             name: "showDetails"
@@ -28,24 +27,25 @@ Rectangle {
     Column {
         Row { //Eine Row, damit die Details im Gleichen Screen einfach reingemovet werden können
             id: viewContainer
-            CannyGPX2 {
+            CannyGPX {
                 width: screen.width
                 height: screen.height-100
             }
-            Text {
+            CannyDetails {
                 id: detailsPage
-                anchors.fill: screen
-                text: "Details"
-                MouseArea {
-                    anchors.fill: parent //Die gesamte Fläche des Delegates ist nun klickbar
-                    onClicked: {
-                        screen.state=""
-                    }
-                }
+                width: screen.width
+                height: screen.height-buttonBar.height
+//                MouseArea {
+//                    anchors.fill: parent //Die gesamte Fläche des Delegates ist nun klickbar
+//                    onClicked: {
+//                        screen.state=""
+//                    }
+//                }
             }
         }
         //
         Row {
+            id: buttonBar
             width: screen.width
             height: 100
             spacing: 10
@@ -77,31 +77,62 @@ Rectangle {
                   }
             }
             Rectangle {
-                    id: closeButton
-                    x: gpxButton.x
-                    y: gpxButton.y
-                    width: gpxButton.width
-                    height: gpxButton.height
-                    color: "grey"
-                    border.color: "yellow"
-                    border.width: 4
-                    radius: 10
-                    Text {
-                        id: buttonLabelClose
-                        text: "Close"
-                        font.bold: true; font.pointSize: 10
-                        anchors.centerIn: parent
-                    }
-                    MouseArea {
-                        id: buttonMouseAreaClose
-                        anchors.fill: parent
+                id: closeButton
+                x: gpxButton.x
+                y: gpxButton.y
+                width: gpxButton.width
+                height: gpxButton.height
+                color: "grey"
+                border.color: "yellow"
+                border.width: 4
+                radius: 10
+                Text {
+                    id: buttonLabelClose
+                    text: "Close"
+                    font.bold: true; font.pointSize: 10
+                    anchors.centerIn: parent
+                }
+                MouseArea {
+                    id: buttonMouseAreaClose
+                    anchors.fill: parent
 
-                        onClicked:  {
-                            Qt.quit()
-                            //screen.qmlSignal(1)
-                        }
+                    onClicked:  {
+                        Qt.quit()
+                        //screen.qmlSignal(1)
                     }
-        }
+                }
+            }
+//            Rectangle {
+//                id: backButton
+//                x: gpxButton.x
+//                y: gpxButton.y
+//                width: gpxButton.width
+//                height: gpxButton.height
+//                color: "grey"
+//                border.color: "yellow"
+//                border.width: 4
+//                radius: 10
+//                opacity: 0
+//                Text {
+//                    id: backLabelClose
+//                    text: "Back"
+//                    font.bold: true; font.pointSize: 10
+//                    anchors.centerIn: parent
+//                }
+//                MouseArea {
+//                    id: buttonMouseAreaBack
+//                    anchors.fill: parent
+
+//                    onClicked:  {
+//                        screen.state=""
+//                        opacity: 0
+//                        gpxButton.opacity = 1
+//                    }
+//                }
+//            }
+
+
+
         }
     }
 }

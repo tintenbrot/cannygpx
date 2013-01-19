@@ -29,6 +29,8 @@ Rectangle {
                     anchors.fill: parent //Die gesamte Fläche des Delegates ist nun klickbar
                     onClicked: {
                         screen.state = "showDetails"
+                        detailsPage.sCacheName = sName
+                        detailsPage.sShortDescription = sShortDescription
                     }
                 }
             }
