@@ -36,7 +36,8 @@ private:
     void createDB();
     void fillDB(QString sFileName);
 private slots:
-    void slotEvalQMLSignal(int);
+//    void slotEvalQMLSignal(int);
+    void slotEvalQMLSignal(QString);
     void onFileSelected(const QStringList&);
 };
 

@@ -6,7 +6,8 @@ Rectangle {
     width: 460
     height: 800
     color: "blue"
-    signal qmlSignal(int iValue)
+    //signal qmlSignal(int iValue)
+    signal qmlSignal(string sValue)
 
     states: [
         State {
@@ -60,7 +61,7 @@ Rectangle {
                 Text{
                     id: buttonLabelLoadGPX
                     font.bold: true; font.pointSize: 10
-                    text: "Load GPX"
+                    text: "Import GPX"
                     anchors.centerIn: parent;
                   }
                 MouseArea{
@@ -68,9 +69,9 @@ Rectangle {
 
                     anchors.fill: parent //anchor all sides of the mouse area to the rectangle's anchors
                     //onClicked handles valid mouse button clicks
-
-                    onClicked: {
-                        screen.qmlSignal(0)
+                    onPressed:  {
+//                    onClicked: {
+                        screen.qmlSignal("ImportGPX")
                         //console.log(buttonLabelLoadGPX.text + " clicked" )
                     }
                   }
@@ -94,10 +95,11 @@ Rectangle {
                 MouseArea {
                     id: buttonMouseAreaClose
                     anchors.fill: parent
-
-                    onClicked:  {
-                        Qt.quit()
-                        //screen.qmlSignal(1)
+                    onPressed:  {
+//                    onClicked:  {
+                        //Qt.quit()
+                        screen.qmlSignal(screen.state)
+                        screen.state=""
                     }
                 }
             }

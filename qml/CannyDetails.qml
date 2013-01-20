@@ -13,7 +13,7 @@ Rectangle {
     Column {
         //left: parent.left
         width: parent.width
-        height: 100
+   //     height: 100
         Row {
             id: topBar
             width: parent.width
@@ -49,10 +49,6 @@ Rectangle {
                 height: parent.height
                 width: height;
                 smooth: true;
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: screen.state = ""
-                }
             }
         }
 
