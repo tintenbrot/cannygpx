@@ -21,7 +21,7 @@ GpxViewer::GpxViewer(QWidget *parent) :
     m_pGpxModel=0;
     m_pGpxModel = new GpxModel(this);
     m_viewer= new QmlApplicationViewer();
-
+    m_filePicker = 0;
 
     //m_filePicker = 0;
     m_Database = QSqlDatabase::addDatabase("QSQLITE");
@@ -59,18 +59,23 @@ GpxViewer::GpxViewer(QWidget *parent) :
     //m_viewer->setMainQmlFile(QLatin1String("qrc:/qml/CannyGPX.qml"));
    // m_viewer->setMainQmlFile(QLatin1String("qrc:/qml/MainWindow.qml"));
     m_viewer->setMainQmlFile(QLatin1String("qml/MainWindow.qml"));
+    //
+#ifdef Q_OS_BLACKBERRY
+    m_viewer->showFullScreen();
+#else
     m_viewer->showExpanded();
+#endif
     //
     // Button Rebuild Database in C++ verknüpfeln
     //m_RebuildButton = m_viewer->findChild<QObject*>("btnRebuildDatabase");
     m_RebuildButton = (QObject *)m_viewer->rootObject();
-    QObject::connect(m_RebuildButton, SIGNAL(qmlSignal(int)), this, SLOT(slotEvalQMLSignal(int)));
+    QObject::connect(m_RebuildButton, SIGNAL(qmlSignal(QString)), this, SLOT(slotEvalQMLSignal(QString)));
 }
 
 GpxViewer::~GpxViewer()
 {
     m_Database.close();
-    if (!(m_pGpxModel==0)) delete(m_pGpxModel);
+    //if (!(m_pGpxModel==0)) delete(m_pGpxModel);
     if (!(m_viewer==0)) delete(m_viewer);
     if (m_filePicker != 0) delete m_filePicker;
 }
@@ -111,53 +116,98 @@ void GpxViewer::fillDB(QString sFileName)
     }
 }
 
-void GpxViewer::slotEvalQMLSignal(int iValue)
+//void GpxViewer::slotEvalQMLSignal(int iValue)
+//{
+//    qDebug() << "Got Signal with value=" << iValue;
+//    if (iValue==0) {
+//#ifdef Q_OS_BLACKBERRY
+//        //if (m_filePicker != 0) delete m_filePicker;
+//        QStringList filters;
+//        filters << "*.gpx";
+//        //FilePicker *filePicker = new FilePicker(FileType::Other, 0, filters, QStringList(), QStringList(),this);
+//        m_filePicker = new FilePicker(FileType::Other, 0, filters, QStringList(), QStringList());
+//    //    filePicker->setType(FileType::Picture);
+//        m_filePicker->setTitle("Select GPX-file");
+//        m_filePicker->setAllowOverwrite(false);
+//        //filePicker->setFilter(filters);
+//        //filePicker->setType()
+//        m_filePicker->setMode(FilePickerMode::Picker);
+//        m_filePicker->open();
+//        QObject::connect(m_filePicker, SIGNAL(fileSelected(const QStringList&)), this, SLOT(onFileSelected(const QStringList&)));
+//#else
+//        QString sFile=QDir::homePath() + QDir::separator()+"default.gpx";;
+//        m_Database.close();
+//        if (QFile(sFile).exists())
+//        {
+//            m_viewer->rootContext()->setContextProperty("GpxModel",0);
+//            qDebug() << "Juchu, das File existiert";
+//            QFile MyFile(m_sDatabaseFile);
+//            MyFile.remove();
+//            //
+//            m_Database.open();
+//            createDB();
+//            fillDB(sFile);
+//            //
+//            m_viewer->rootContext()->setContextProperty("GpxModel",m_pGpxModel);
+//        }
+//#endif
+//    }
+//    if (iValue==1)
+//        qApp->quit();
+//    //
+//}
+
+void GpxViewer::slotEvalQMLSignal(QString sValue)
 {
-    qDebug() << "Got Signal with value=" << iValue;
-    if (iValue==0) {
-#ifdef Q_OS_BLACKBERRY
-        //if (m_filePicker != 0) delete m_filePicker;
-        QStringList filters;
-        filters << "*.gpx";
-        //FilePicker *filePicker = new FilePicker(FileType::Other, 0, filters, QStringList(), QStringList(),this);
-        m_filePicker = new FilePicker(FileType::Other, 0, filters, QStringList(), QStringList());
-    //    filePicker->setType(FileType::Picture);
-        m_filePicker->setTitle("Select GPX-file");
-        m_filePicker->setAllowOverwrite(false);
-        //filePicker->setFilter(filters);
-        //filePicker->setType()
-        m_filePicker->setMode(FilePickerMode::Picker);
-        m_filePicker->open();
-        QObject::connect(m_filePicker, SIGNAL(fileSelected(const QStringList&)), this, SLOT(onFileSelected(const QStringList&)));
-#else
-        QString sFile=QDir::homePath() + QDir::separator()+"default.gpx";;
-        m_Database.close();
-        if (QFile(sFile).exists())
-        {
-            m_viewer->rootContext()->setContextProperty("GpxModel",0);
-            qDebug() << "Juchu, das File existiert";
-            QFile MyFile(m_sDatabaseFile);
-            MyFile.remove();
-            //
-            m_Database.open();
-            createDB();
-            fillDB(sFile);
-            //
-            m_viewer->rootContext()->setContextProperty("GpxModel",m_pGpxModel);
+    qDebug() << "Got Signal" << sValue;
+    if (sValue=="ImportGPX") {
+    #ifdef Q_OS_BLACKBERRY
+            //if (m_filePicker != 0) delete m_filePicker;
+            QStringList filters;
+            filters << "*.gpx";
+            //FilePicker *filePicker = new FilePicker(FileType::Other, 0, filters, QStringList(), QStringList(),this);
+            m_filePicker = new FilePicker(FileType::Other, 0, filters, QStringList(), QStringList());
+        //    filePicker->setType(FileType::Picture);
+            m_filePicker->setTitle("Select GPX-file");
+            m_filePicker->setAllowOverwrite(false);
+            //filePicker->setFilter(filters);
+            //filePicker->setType()
+            m_filePicker->setMode(FilePickerMode::Picker);
+            m_filePicker->open();
+            QObject::connect(m_filePicker, SIGNAL(fileSelected(const QStringList&)), this, SLOT(onFileSelected(const QStringList&)));
+    #else
+            QString sFile=QDir::homePath() + QDir::separator()+"default.gpx";;
+            m_Database.close();
+            if (QFile(sFile).exists())
+            {
+                m_viewer->rootContext()->setContextProperty("GpxModel",0);
+                qDebug() << "Juchu, das File existiert";
+                QFile MyFile(m_sDatabaseFile);
+                MyFile.remove();
+                //
+                m_Database.open();
+                createDB();
+                fillDB(sFile);
+                //
+                m_viewer->rootContext()->setContextProperty("GpxModel",m_pGpxModel);
+            }
+    #endif
         }
-#endif
-    }
-    if (iValue==1)
-        qApp->quit();
-    //
+    if (sValue=="")
+            qApp->quit();
+        //
 }
+
 
 void GpxViewer::onFileSelected(const QStringList &slList )
 {
     QString sFile;
     //sFile=QDir::homePath()+QDir::separator()+"downloads"+QDir::separator()+"default.gpx";
     sFile=slList[0];
+    //
     if (m_filePicker != 0) delete m_filePicker;
+    m_filePicker=0;
+    //
     //QString sFile = filePicker->selectedFiles[0];
     m_Database.close();
 //     "/home/daniel/Test_LDK.gpx"
