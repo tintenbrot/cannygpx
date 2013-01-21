@@ -33,6 +33,16 @@
 <!--
     <asset path="%SRC_DIR%/qml">qml</asset>
 -->
+    <asset path="qml/MainWindow.qml">qml/MainWindow.qml</asset>
+    <asset path="qml/CannyGPX.qml">qml/CannyGPX.qml</asset>
+    <asset path="qml/CannyDetails.qml">qml/CannyDetails.qml</asset>
+    <asset path="qml/Icons/multi.svg">qml/Icons/multi.svg</asset>
+    <asset path="qml/Icons/traditional.svg">qml/Icons/traditional.svg</asset>
+    <asset path="qml/Icons/mystery.svg">qml/Icons/mystery.svg</asset>
+    <asset path="tintenbrot.png">tintenbrot.png</asset>
+    <asset path="tintenbrot_splash.png">tintenbrot_splash.png</asset>
+
+    <!--
     <asset path="%SRC_DIR%/qml/MainWindow.qml">qml/MainWindow.qml</asset>
     <asset path="%SRC_DIR%/qml/CannyGPX.qml">qml/CannyGPX.qml</asset>
     <asset path="%SRC_DIR%/qml/CannyDetails.qml">qml/CannyDetails.qml</asset>
@@ -41,6 +51,6 @@
     <asset path="%SRC_DIR%/qml/Icons/mystery.svg">qml/Icons/mystery.svg</asset>
     <asset path="%SRC_DIR%/tintenbrot.png">tintenbrot.png</asset>
     <asset path="%SRC_DIR%/tintenbrot_splash.png">tintenbrot_splash.png</asset>
-    <!-- <asset path="CannyGPX.sqlite">CannyGPX.sqlite</asset> -->
+    -->
     <permission>access_shared</permission>
 </qnx>
