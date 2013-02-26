@@ -33,10 +33,24 @@ GpxViewer::GpxViewer(QWidget *parent) :
 //    QFile MyFile(m_sDatabaseFile);
 //    MyFile.remove();
     //
+    bool bFirstRun;
+    bFirstRun=!QFile(m_sDatabaseFile).exists();
+
     m_Database.setDatabaseName(m_sDatabaseFile);
+
     //bdb.setDatabaseName("/home/daniel/maps/default.sqlitedb");
     m_Database.open();
+    //
     qDebug() << "m_Database open=" << m_Database.lastError();
+//    bFirstRun=true;
+    if (bFirstRun) {
+        createDB();
+        QString sGpxFile=QDir::homePath()+"/default.gpx";
+#ifdef Q_OS_BLACKBERRY
+            sGpxFile=QDir::homePath() + "/app/native/assets/default.gpx";
+#endif
+        fillDB(sGpxFile);
+    }
 
     //createDB();
     //fillDB();
@@ -189,12 +203,13 @@ void GpxViewer::slotEvalQMLSignal(QString sValue)
                 createDB();
                 fillDB(sFile);
                 //
+                m_pGpxModel->setQuery("SELECT * FROM Geocaches", m_Database);
                 m_viewer->rootContext()->setContextProperty("GpxModel",m_pGpxModel);
-
 //                m_viewer->rootContext()->setProperty(
 //                m_viewer->
             }
     #endif
+
         }
     if (sValue=="")
             qApp->quit();
@@ -228,6 +243,7 @@ void GpxViewer::onFileSelected(const QStringList &slList )
         createDB();
         fillDB(sFile);
         // Reset Database
-        //m_viewer->rootContext()->setContextProperty("GpxModel",m_pGpxModel);
+        m_pGpxModel->setQuery("SELECT * FROM Geocaches", m_Database);
+        m_viewer->rootContext()->setContextProperty("GpxModel",m_pGpxModel);
     }
 }
