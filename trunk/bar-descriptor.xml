@@ -41,6 +41,7 @@
     <asset path="qml/Icons/mystery.svg">qml/Icons/mystery.svg</asset>
     <asset path="tintenbrot.png">tintenbrot.png</asset>
     <asset path="tintenbrot_splash.png">tintenbrot_splash.png</asset>
+    <asset path="assets">assets</asset>
 
     <!--
     <asset path="%SRC_DIR%/qml/MainWindow.qml">qml/MainWindow.qml</asset>

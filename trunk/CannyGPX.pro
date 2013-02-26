@@ -55,4 +55,4 @@ OTHER_FILES += bar-descriptor.xml
 
 RESOURCES += CannyGPX.qrc
 
-#LIBS += -lbbcascadespickers
+LIBS += -lbbcascadespickers
