@@ -80,12 +80,13 @@ bool GPXparser::getNextCache(Geocache &OneCache)
                 if (sType=="Geocache|Traditional Cache") OneCache.setType("tradi");
                 else if (sType=="Geocache|Multi-cache") OneCache.setType("multi");
                 else if (sType=="Geocache|Unknown Cache")  OneCache.setType("unknown");
-                qDebug() << "Found type=" << m_XmlStreamReader->readElementText();
+//                else OneCache.setType("unknown");
+                //qDebug() << "Found type=" << m_XmlStreamReader->readElementText();
             }
             else if(m_XmlStreamReader->name()=="text")
             {
                 OneCache.setText(m_XmlStreamReader->readElementText());
-                qDebug() << "Text=" << m_XmlStreamReader->readElementText();
+                //qDebug() << "Text=" << m_XmlStreamReader->readElementText();
             }
             else if(m_XmlStreamReader->name()=="short_description")
             {
@@ -99,7 +100,7 @@ bool GPXparser::getNextCache(Geocache &OneCache)
             }
             else
             {
-                qDebug() << "StartElement Name=" << m_XmlStreamReader->name();
+//                qDebug() << "StartElement Name=" << m_XmlStreamReader->name();
                 //qDebug() << "Value=" << m_XmlStreamReader->readElementText();
             }
         }
@@ -108,7 +109,7 @@ bool GPXparser::getNextCache(Geocache &OneCache)
         {
             //qDebug() << "EndElement Name=" << m_XmlStreamReader->name();
             if (m_XmlStreamReader->name()=="wpt") {
-                qDebug() << "Cache fettich gelesen";
+                qDebug() << "Cache fettich gelesen: "<< OneCache.code();
                 boolFoundStartTag=false;
             }
         }

@@ -6,6 +6,7 @@ Geocache::Geocache(QObject *parent) :
     m_name="";
     m_type="";
     m_description="";
+    m_code="";
 }
 
 
@@ -57,7 +58,7 @@ void Geocache::setName(QString sValue)
 
 void Geocache::setDescription(QString sValue)
 {
-    m_description=sValue;
+    m_description=reformatSQLstring(sValue);
 }
 
 void Geocache::setType(QString sValue)
@@ -72,5 +73,10 @@ void Geocache::setText(QString sValue)
 
 void Geocache::setLongDescription(QString sValue)
 {
-    m_longdescription=sValue;
+    m_longdescription=reformatSQLstring(sValue);
+}
+
+QString Geocache::reformatSQLstring(QString sValue)
+{
+    return sValue.replace("'","");
 }

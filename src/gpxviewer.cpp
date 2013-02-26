@@ -102,8 +102,8 @@ void GpxViewer::fillDB(QString sFileName)
     //MyGpxParser.setFileName("/home/daniel/20121201_LDK.gpx");
     //MyGpxParser.setFile(MyFile);
     while (MyGpxParser.getNextCache(MyCache)) {
-        qDebug() << "New found Cache";
-        qDebug() << "Name=" << MyCache.name();
+        qDebug() << "fillDB: New found Cache";
+//        qDebug() << "Name=" << MyCache.name();
         qDebug() << "Description=" << MyCache.description() << "\n";
         //
         sInsert="INSERT INTO geocaches VALUES ('";
@@ -190,6 +190,9 @@ void GpxViewer::slotEvalQMLSignal(QString sValue)
                 fillDB(sFile);
                 //
                 m_viewer->rootContext()->setContextProperty("GpxModel",m_pGpxModel);
+
+//                m_viewer->rootContext()->setProperty(
+//                m_viewer->
             }
     #endif
         }

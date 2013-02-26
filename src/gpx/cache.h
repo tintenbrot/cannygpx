@@ -33,6 +33,8 @@ private:
     QString m_text;
     QString m_description;
     QString m_longdescription;
+    //
+    QString reformatSQLstring(QString sValue);
 };
 
 #endif // GEOCACHE_H
