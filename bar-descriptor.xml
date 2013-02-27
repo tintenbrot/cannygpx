@@ -2,11 +2,10 @@
 <qnx xmlns="http://www.qnx.com/schemas/application/1.0">
     <id>com.example.cannygpx</id>
     <name>CannygGPX</name>
-    <versionNumber>1.0.0</versionNumber>
+    <versionNumber>1.0.1</versionNumber>
     <description>
         This small application can be used to view Geocaching waypoint files (gpx).
         Thanks to Dimitri Brukakis who builds the icons.
-        This is my first qml-project.
     </description>
     <icon>
         <image>tintenbrot.png</image>
@@ -39,6 +38,13 @@
     <asset path="qml/Icons/multi.svg">qml/Icons/multi.svg</asset>
     <asset path="qml/Icons/traditional.svg">qml/Icons/traditional.svg</asset>
     <asset path="qml/Icons/mystery.svg">qml/Icons/mystery.svg</asset>
+    <asset path="qml/Icons/earthcache.svg">qml/Icons/earthcache.svg</asset>
+    <asset path="qml/Icons/event.svg">qml/Icons/event.svg</asset>
+    <asset path="qml/Icons/locationless.svg">qml/Icons/locationless.svg</asset>
+    <asset path="qml/Icons/whereigo.svg">qml/Icons/whereigo.svg</asset>
+    <asset path="qml/Icons/letterbox.svg">qml/Icons/letterbox.svg</asset>
+    <asset path="qml/Icons/mega.svg">qml/Icons/mega.svg</asset>
+    <asset path="qml/Icons/webcam.svg">qml/Icons/webcam.svg</asset>
     <asset path="tintenbrot.png">tintenbrot.png</asset>
     <asset path="tintenbrot_splash.png">tintenbrot_splash.png</asset>
     <asset path="assets">assets</asset>
