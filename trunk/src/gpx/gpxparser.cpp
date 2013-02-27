@@ -80,8 +80,11 @@ bool GPXparser::getNextCache(Geocache &OneCache)
                 if (sType=="Geocache|Traditional Cache") OneCache.setType("tradi");
                 else if (sType=="Geocache|Multi-cache") OneCache.setType("multi");
                 else if (sType=="Geocache|Unknown Cache")  OneCache.setType("unknown");
-//                else OneCache.setType("unknown");
-                //qDebug() << "Found type=" << m_XmlStreamReader->readElementText();
+                else if (sType=="Geocache|Event Cache") OneCache.setType("event");
+                else if (sType=="Geocache|Wherigo Cache") OneCache.setType("whereigo");
+                else if (sType=="Geocache|Earthcache") OneCache.setType("earthcache");
+                else if (sType=="Geocache|Letterbox Hybrid") OneCache.setType("letterbox");
+                else if (sType=="Geocache|Webcam Cache") OneCache.setType("webcam");
             }
             else if(m_XmlStreamReader->name()=="text")
             {

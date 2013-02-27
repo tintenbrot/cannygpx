@@ -29,6 +29,7 @@ void GpxModel::setQuery(const QSqlQuery & query)
 void GpxModel::generateRoleNames()
 {
     QHash<int, QByteArray> roleNames;
+    roleNames.clear();
     for( int i = 0; i < record().count(); i++) {
         roleNames[Qt::UserRole + i + 1] = record().fieldName(i).toAscii();
         if (roleNames[Qt::UserRole+i+1] == "sType") {
@@ -62,34 +63,14 @@ QVariant GpxModel::data(const QModelIndex &index, int role) const
             if (retVariant.toString()=="tradi") retVariant = QString("Icons/traditional.svg");
             else if (retVariant.toString()=="multi") retVariant = QString("Icons/multi.svg");
             else if (retVariant.toString()=="unknown") retVariant = QString("Icons/mystery.svg");
+            else if (retVariant.toString()=="earthcache") retVariant = QString("Icons/earthcache.svg");
+            else if (retVariant.toString()=="event") retVariant = QString("Icons/event.svg");
+            else if (retVariant.toString()=="whereigo") retVariant = QString("Icons/whereigo.svg");
+            else if (retVariant.toString()=="letterbox") retVariant = QString("Icons/letterbox.svg");
+            else if (retVariant.toString()=="mega") retVariant = QString("Icons/mega.svg");
+            else if (retVariant.toString()=="webcam") retVariant = QString("Icons/webcam.svg");
+            else if (retVariant.toString()=="locationless") retVariant = QString("Icons/locationless.svg");
         }
-//        else if (columnIdx>2) {
-//                retVariant=QString("");
-//        }
-//        else if (columnIdx==m_uiNameIndex) {
-//            modelIndex = this->index(index.row(), Qt::UserRole+2);
-//            QString sName=QSqlQueryModel::data(modelIndex, Qt::DisplayRole).toString();
-//            modelIndex = this->index(index.row(), Qt::UserRole+1);
-//            sName += QString("\n")+QSqlQueryModel::data(modelIndex, Qt::DisplayRole).toString();
-//            retVariant=sName;
-//        }
-//        if (columnIdx == m_uiTypeIndex)
-//        {
-//            switch(retVariant.toInt())
-//            {
-//            case 0:
-//                retVariant = QString("Icons/traditional.svg");
-//                break;
-//            case 1:
-//                retVariant = QString("Icons/multi.svg");
-//                break;
-//            case 2:
-//                retVariant = QString("Icons/mystery.svg");
-//                break;
-//            }
-
-//            qDebug() << "Wurst=" << retVariant.toInt();
-//        }
         qDebug() << "Data=" << retVariant;
     }
     return retVariant;
